@@ -1,0 +1,13 @@
+{
+    "name": "structures",
+    "version": "0.0.1",
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shamasis/structures.git"
+    },
+
+    "devDependencies": {
+        "jasmine-node": "*"
+    }
+}
