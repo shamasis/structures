@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
 	copy: function (sink, source) {
 		!sink && (sink = {});
 		for (var prop in source) {
