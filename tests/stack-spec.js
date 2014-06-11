@@ -92,4 +92,42 @@ describe ('stack', function () {
         expect(stack.push('item 5')).toBe('item 5');
         expect(stack.push('item 6')).toBe('item 6');
     });
+
+    it ('can iterate and pop each item', function () {
+        var stack = new Stack(),
+            accumulator = '',
+            scopeStack;
+
+        expect(stack.popEach).toBeOfType('function');
+
+        ('top').split('').forEach(function (item) {
+            stack.push(item);
+        });
+
+        stack.popEach(function (item) {
+            accumulator += item;
+            scopeStack = this;
+        });
+
+        expect(stack.size()).toBe(0);
+        expect(accumulator).toBe('pot');
+        expect(scopeStack === stack).toEqual(true);
+
+        ('top123').split('').forEach(function (item) {
+            stack.push(item);
+        });
+
+        // Pop until top is an alphabet.
+        stack.popEach(function (item) {
+            if (isNaN(item)) {
+                // since it was already popped, we push it back
+                this.push(item);
+                return false;
+            }
+        });
+
+        expect(stack.size(3)).toBe(3);
+        expect(stack.peek()).toBe('p');
+
+    });
 });

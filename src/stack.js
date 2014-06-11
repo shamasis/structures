@@ -99,6 +99,29 @@ lib.copy(Stack.prototype, /** @lends Stack.prototype */ {
         this.length = 0;
         delete this.top;
         delete this.popped;
+    },
+
+    /**
+     * This function allows you to pop all items in the stack and pass a callback to receive each item to be operated
+     * upon. Returning `true` from the callback function breaks the iteration.
+     *
+     * @param {function} callback The callback function that will be called with eeach popped item as the first
+     * parameter and the stack is passed as the second parameter.
+     *
+     * @param {*=} [scope=this] This parameter is used as the scope of the `callback` parameter. When not provided,
+     * the stack itself is used as the scope.
+     */
+    popEach: function (callback, scope) {
+        var item;
+
+        // The
+        if (typeof callback !== 'function') {
+            return;
+        }
+
+        // If scope is not provided, we use the stack as scope.
+        scope = scope || this;
+        while ((item = this.pop()) && (callback.call(scope, item, this) !== false)) { }
     }
 });
 
