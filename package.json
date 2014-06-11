@@ -8,6 +8,11 @@
     },
 
     "devDependencies": {
-        "jasmine-node": "*"
+        "jasmine-node": "*",
+        "jshint": "*"
+    },
+
+    "scripts": {
+        "test": "jshint src/ tests/ --verbose && jasmine-node tests/"
     }
 }
