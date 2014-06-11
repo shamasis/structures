@@ -5,7 +5,7 @@ var lib = require('../src/lib.js'),
  * @constructor
  */
 Stack = function () {
-    this.clear();
+    this.length = 0;
 };
 
 Stack.Item = function (value, prev) {
@@ -34,8 +34,8 @@ lib.copy(Stack.prototype, /** @lends Stack.prototype */ {
      * @returns {*}
      */
     pop: function () {
-        var top = this.top;
-        return top && ((this.top = top.prev), --this.length, top.value);
+        return (this.popped = this.top) && ((this.top = this.popped.prev), --this.length, (delete this.popped.prev),
+            this.popped.value);
     },
 
     /**
@@ -49,8 +49,9 @@ lib.copy(Stack.prototype, /** @lends Stack.prototype */ {
      *
      */
     clear: function () {
-        this.top = undefined;
         this.length = 0;
+        delete this.top;
+        delete this.popped;
     }
 });
 
