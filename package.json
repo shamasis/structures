@@ -9,7 +9,7 @@
 
     "devDependencies": {
         "jasmine-node": "*",
-        "jshint": "*"
+        "jshint": "2.9.5"
     },
 
     "scripts": {
